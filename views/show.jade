@@ -1,0 +1,49 @@
+doctype html
+html
+  head
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+    script.
+      $(document).ready(function(){
+      $("#flip").click(function(){
+      $("#panel").slideToggle("slow");
+      });
+      });
+    style.
+      #panel, #flip {
+      padding: 5px;
+      text-align: center;
+      background-color: #e5eecc;
+      border: solid 1px #c3c3c3;
+      }
+      #panel {
+      padding: 50px;
+      display: none;
+      }
+       .button {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        }
+  body
+  p Individual Page 
+   a.button(href='/') Home
+    
+      a.button(href='/page2') Page 2
+      
+        a.button(href='/page2/add') New
+    #flip Click to slide down panel
+    #panel
+     p well
+      each room in cars
+       p This is page fro room no: #{room.id} #{room.name}
+        p Room Id: #{room.id} and Name: #{room.name}: 
+         p Here #{room.name}
+           p =res.write(json)
+                

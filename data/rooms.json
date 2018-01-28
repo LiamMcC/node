@@ -1,0 +1,14 @@
+{
+    "cars": [
+        {
+            "name": "Node1",
+            "id": 1,
+            "position": 1
+        },
+        {
+            "name": "Milk",
+            "id": 3,
+            "position": 3
+        }
+    ]
+}

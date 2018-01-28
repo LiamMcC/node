@@ -1,0 +1,30 @@
+doctype html
+html
+  head
+      style.
+       .button {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        }
+  body
+  a.button(href='/') Home
+    
+      a.button(href='/page2') Page 2
+      
+        a.button(href='/page2/add') New
+      p Add a New item
+        form(method="post")
+            fieldset.form-group
+                label(for="name") Name:
+                input(name="name", type="text", placeholder="Enter a Name")
+                small.text-muted Enter a name
+                button(type="submit") create a new room
+                
