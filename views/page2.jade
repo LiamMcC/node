@@ -43,7 +43,10 @@ html
       each room in rooms.cars
        p Room Id: #{room.id} and Name: #{room.name}: 
          a(href='/page2/delete/#{room.name}') Delete <!-- need to be called with the syntax here to make it work -->
-          a.button(href='/show/#{room.name}') #{room.name}
+          a.button(href='/show/#{room.name}/#{room.id}/#{room.position}') Show
+            a.button(href='/edit/#{room.name}') Edit
+             
+              
           
                 
 

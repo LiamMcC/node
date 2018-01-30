@@ -5,6 +5,12 @@ var bodyParser = require("body-parser");
 var fs = require('fs');
 
 
+
+
+app.use('/images', express.static(__dirname + "/images")); // this is needed to render images
+
+
+
 app.set('view engine', 'jade')
 app.set('viewse', "views")
 
@@ -140,16 +146,29 @@ res.redirect("/page2");
 // Code to get individual page
 
   
-app.get('/show/:name', function(req, res) {
+app.get('/show/:name/:id/:position', function(req, res) {
   
- var json = JSON.stringify(req.params.name);
+ var jsonZ = JSON.stringify(req.params.name)
+ 
+ 
+ var keytoFind = req.params.name; // position represents the location in the json array remember 0 is the first
+var str2 = rooms.cars; // this changes the json to a variable str2
+
+var data = str2; //this declares data = str2
+var index2 = data.map(function(d) { return d['name']; }).indexOf(keytoFind)
+ 
+
  
  res.render('show', {
   title: "LiamJson" , 
-  cars: {cars: json}
+  rooms: rooms,
+  param: req.params.name,
+  param2: req.params.id,
+  param3: req.params.position
   
 })
-  console.log("Rooms Rendered " + json);
+
+  console.log("Rooms Rendered " + jsonZ);
   
 });
 
@@ -162,11 +181,50 @@ app.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function() {
   
 });
 
+// Update code ------------------------------------------------------------- //
 
+    app.post('/show/:name/:id/:position', function(req, res) {
+        
+          var json = JSON.stringify(rooms); // this is to Convert it from an object to string with stringify for use below
+  
+  
+                fs.readFile('./data/rooms.json', 'utf8', function readFileCallback(err, data){
+                        if (err){
+                        console.log(err);
+                        } else {
+   
 
+                var keytoFind = req.params.name; // position represents the location in the json array remember 0 is the first
+                var str2 = rooms.cars; // this changes the json to a variable str2
+
+                        var data = str2; //this declares data = str2
+                        var index2 = data.map(function(d) { return d['name']; }).indexOf(keytoFind) // finds the position by nae taken from http://jsfiddle.net/hxfdZ/
+
+                                    console.log("Liam the update is complete " + index2 + "    " + keytoFind)
+
+                                    var x = req.body.newname;
+                                    var y = req.body.newname;
+                                    var z = req.body.newname;
+
+            rooms.cars.splice(index2,1, {name: x, id: 13, position: 13}); // this line updates the data VERY VERY VERY VERY IMPORTANT
+
+                    // rooms.cars.splice(keytoFind,1, {name: "hello", id: 34, position: 16}); // this line updates the data VERY VERY VERY VERY IMPORTANT
+
+                            json = JSON.stringify(rooms, null, 4); //convert it back to json
+                    
+                    
+                    fs.writeFile('./data/rooms.json', json, 'utf8'); // write it back 
+                        console.log("The index of =  "+ req.params.name + " is " + index2);
     
+
+  
+}});
+  
+
+res.redirect("/page2");
+        
     
-    
+    });
     
     // <----------------------------------------------------------------------------------------------->
     

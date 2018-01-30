@@ -36,14 +36,21 @@ html
    a.button(href='/') Home
     
       a.button(href='/page2') Page 2
-      
         a.button(href='/page2/add') New
-    #flip Click to slide down panel
-    #panel
-     p well
-      each room in cars
-       p This is page fro room no: #{room.id} #{room.name}
-        p Room Id: #{room.id} and Name: #{room.name}: 
-         p Here #{room.name}
-           p =res.write(json)
-                
+    form(method="post")
+     input(name="newname", type="text", placeholder="Enter a Name", value="#{param}")
+     
+     button(type="submit") Update It
+#flip Click to slide down panel
+#panel
+                  p well
+                   p !{param} 
+                    p !{param2} 
+                      p !{param3}
+          
+                       
+            
+             
+            
+            
+             
